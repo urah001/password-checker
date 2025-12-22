@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
+import { BsForward } from "react-icons/bs";
 
 const securityTips = [
   "Never reuse the same password on multiple websites.",
@@ -14,7 +16,7 @@ const securityTips = [
   "Hackers target reused credentials more than weak ones.",
   "Strong passwords protect against credential stuffing.",
 ];
-let amountClicked = 0;
+
 function getRandomTips(tips: string[], count = 2) {
   const shuffled = [...tips].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
@@ -23,6 +25,7 @@ function getRandomTips(tips: string[], count = 2) {
 export default function SecurityTipsModal() {
   const [visible, setVisible] = useState(true);
   const [tips, setTips] = useState<string[]>([]);
+  const [amountClicked, setAmountClicked] = useState(0);
 
   useEffect(() => {
     setTips(getRandomTips(securityTips));
@@ -30,8 +33,9 @@ export default function SecurityTipsModal() {
 
   const nextTips = () => {
     setTips(getRandomTips(securityTips));
-    amountClicked += 1;
-    if (amountClicked == 2) {
+    const newCount = amountClicked + 1;
+    setAmountClicked(newCount);
+    if (newCount >= 2) {
       setVisible(false);
     }
   };
@@ -39,33 +43,43 @@ export default function SecurityTipsModal() {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-      <div className="w-[90%] max-w-md rounded-2xl bg-[#a26239] p-6 shadow-[8px_8px_16px_#7d4b2c,-8px_-8px_16px_#c98250]">
-        <h3 className="text-lg font-semibold text-white mb-4">
+    // Pushes content to the bottom (justify-end) and adds padding-bottom (pb-8)
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-end bg-black pb-8">
+      {/* Background Image Container - Now full screen height (h-screen) */}
+      <div className="absolute inset-0 w-full h-screen z-0">
+        <Image
+          src={"/test.jpeg"}
+          alt="testing"
+          fill
+          className="object-cover" // Removed opacity for a full image
+          priority
+        />
+      </div>
+
+      {/* Text Content Container - Transparent background (bg-transparent) */}
+      <div className="relative z-10 w-[90%] max-w-md rounded-2xl bg-transparent p-6 font-bold">
+        <h3 className="text-xl font-bold text-black mb-4 flex items-center gap-2 drop-shadow-lg">
           🔐 Security Tip
         </h3>
 
-        <ul className="text-sm text-white space-y-2 mb-6">
+        <ul className="text-base text-black space-y-3 mb-6 drop-shadow-md">
           {tips.map((tip, i) => (
-            <li key={i}>• {tip}</li>
+            <li key={i} className="leading-relaxed">
+              • {tip}
+            </li>
           ))}
         </ul>
 
-        <div className="flex justify-between">
-          <button
-            onClick={nextTips}
-            className="px-4 py-2 rounded-lg bg-[#a26239] shadow-[inset_4px_4px_8px_#7d4b2c,inset_-4px_-4px_8px_#c98250] text-white"
-          >
-            Next
-          </button>
-          {/* logic to set visibility to false if condition are true */}
-          {/* <button
-            onClick={() => setVisible(false)}
-            className="px-4 py-2 rounded-lg bg-green-600 text-white"
-          >
-            Continue
-          </button> */}
-        </div>
+        {/* Action Button - Retains original color background */}
+        <button
+          onClick={nextTips}
+          className="flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-[#a26239] text-white text-xl font-semibold 
+                     shadow-[4px_4px_8px_#7d4b2c,-4px_-4px_8px_#c98250] 
+                     active:shadow-[inset_4px_4px_8px_#7d4b2c,inset_-4px_-4px_8px_#c98250] 
+                     transition-all cursor-pointer"
+        >
+          Next <BsForward size={24} />
+        </button>
       </div>
     </div>
   );
