@@ -282,3 +282,7 @@ I can help you:
 - Harden app security (disable screenshots)
 
 Just tell me 💪
+
+remember the logo
+
+after splash screen -> advises1 -> advise2 -> product
