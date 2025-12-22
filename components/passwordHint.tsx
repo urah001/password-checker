@@ -1,3 +1,4 @@
+"use client";
 export default function PasswordHints({ password }: { password: string }) {
   const hints = [
     { check: password.length >= 8, text: "At least 8 characters" },

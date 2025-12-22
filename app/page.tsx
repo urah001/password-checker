@@ -1,3 +1,4 @@
+"use client";
 import PasswordMeter from "@/components/PasswoordMeter";
 
 export default function Home() {

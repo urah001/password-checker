@@ -1,3 +1,4 @@
+"use client";
 export default function StrengthBar({ strength }: { strength: number }) {
   const levels = [
     "bg-red-500",
