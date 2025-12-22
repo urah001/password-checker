@@ -12,8 +12,7 @@
 
 # testing
 /coverage
-/public
-README.md
+
 # next.js
 /.next/
 /out/
@@ -40,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+#mine
+/public
+README.md
