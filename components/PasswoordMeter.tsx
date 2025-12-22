@@ -19,16 +19,23 @@ export default function PasswordMeter() {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
-    <div className="w-full max-w-md p-6 bg-[#a26239] shadow-[inset_0px_4px_6px_0px_#a26239] rounded-xl ">
+    <div
+      className="  w-full max-w-84 p-6 
+    bg-[#a26239]
+    rounded-2xl
+    shadow-[8px_8px_16px_#7e4d2a,-8px_-8px_16px_#c98a55]"
+    >
       <h2 className="text-xl font-bold mb-4">Password Strength Checker</h2>
       <div className="flex">
         <input
           type={isVisible ? "text" : "password"}
           placeholder="Enter password"
-          className="w-full p-3  rounded mb-3 outline-none"
+          className="w-full p-3  rounded mb-3 outline-none max-w-md 
+    bg-[#a26239] shadow-[-4px_-4px_16px_#7e4d2a,4px_4px_8px_#c98a55]"
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
+            handleCheck;
             setPwned(null);
           }}
         />
@@ -37,21 +44,19 @@ export default function PasswordMeter() {
           type="button"
           onClick={() => setIsVisible(!isVisible)}
           aria-label={isVisible ? "Hide password" : "Show password"}
+          className="-mt-4"
         >
           {isVisible ? <BsEyeSlash size={30} /> : <BsEye size={30} />}
         </button>
       </div>
-
       <StrengthBar strength={strength} />
       <PasswordHints password={password} />
-
       <button
         onClick={handleCheck}
         className="mt-4 w-full bg-black text-white p-2 rounded"
       >
         Check Breach Status
       </button>
-
       {pwned !== null && (
         <p
           className={`mt-3 font-semibold ${
@@ -59,8 +64,8 @@ export default function PasswordMeter() {
           }`}
         >
           {pwned
-            ? "⚠️ This password has appeared in data breaches!"
-            : "✅ This password was NOT found in known breaches."}
+            ? "✖ This password has appeared in data breaches!"
+            : "✔ This password was NOT found in known breaches."}
         </p>
       )}
     </div>
