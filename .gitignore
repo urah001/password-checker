@@ -42,4 +42,7 @@ next-env.d.ts
 
 #mine
 /public
+./public
+public
+.README.md
 README.md
