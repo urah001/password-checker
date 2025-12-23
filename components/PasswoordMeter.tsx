@@ -23,7 +23,7 @@ export default function PasswordMeter() {
       className="  w-full max-w-84 p-6 
     bg-[#a26239]
     rounded-2xl
-    shadow-[8px_8px_16px_#7e4d2a,-8px_-8px_16px_#c98a55]"
+    shadow-[8px_8px_16px_#7e4d2a,-8px_-8px_16px_#c98a55] font-bold"
     >
       <h2 className="text-xl font-bold mb-4">Password Strength Checker</h2>
       <div className="flex">

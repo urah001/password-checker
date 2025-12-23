@@ -9,7 +9,7 @@ export default function PasswordHints({ password }: { password: string }) {
   ];
 
   return (
-    <ul className="text-sm space-y-1">
+    <ul className="text-lg space-y-1 font-bold">
       {hints.map((h, i) => (
         <li key={i} className={h.check ? "text-green-600" : "text-gray-300"}>
           {h.check ? "✔" : "✖"} {h.text}

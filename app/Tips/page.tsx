@@ -6,6 +6,7 @@ import { BsForward } from "react-icons/bs";
 
 const securityTips = [
   "Never reuse the same password on multiple websites.",
+  "donot forget to check if the password was involved in a data breach",
   "Longer passwords are harder to crack than complex short ones.",
   "Avoid using personal information in passwords.",
   "Password managers are safer than browser notes.",
@@ -90,11 +91,11 @@ export default function SecurityTipsModal() {
         <button
           onClick={nextTips}
           className="flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-[#a26239] text-white text-xl font-semibold 
-                     shadow-[4px_4px_8px_#7d4b2c,-4px_-4px_8px_#c98250] 
+                     shadow-[2px_2px_6px_#7d4b2c,-2px_-2px_6px_#c98250] 
                      active:shadow-[inset_4px_4px_8px_#7d4b2c,inset_-4px_-4px_8px_#c98250] 
                      transition-all cursor-pointer"
         >
-          Next <BsForward size={24} />
+          Next <BsForward size={25} />
         </button>
       </div>
     </div>
